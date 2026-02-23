@@ -14,7 +14,7 @@ SELECT
 FROM estudiante e
 LEFT JOIN cursada c ON c.legajo = e.legajo
 WHERE c.nota_final IS NOT NULL
-GROUP BY e.legajo, e.apellido, e.nombre;
+GROUP BY e.legajo, e.apellido, e.nombre
 ORDER BY promedio DESC;
 
 -- =====================================================
