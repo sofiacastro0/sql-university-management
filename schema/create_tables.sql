@@ -1,3 +1,8 @@
+-- =====================================================
+-- CREATE TABLES
+-- Sistema de Gestión Universitaria
+-- =====================================================
+
 CREATE TABLE estudiante (
 	legajo INTEGER PRIMARY KEY,
 	nombre TEXT NOT NULL,

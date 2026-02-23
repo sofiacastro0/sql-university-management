@@ -1,1 +1,1 @@
-# sql-university-management
+# SQL University Management System

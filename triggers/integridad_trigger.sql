@@ -1,3 +1,7 @@
+-- =====================================================
+-- TRIGGERS DE INTEGRIDAD
+-- =====================================================
+
 CREATE TRIGGER validar_cursada_condicion_nota_insert
 BEFORE INSERT ON cursada
 FOR EACH ROW

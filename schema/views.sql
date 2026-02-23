@@ -1,3 +1,7 @@
+-- =====================================================
+-- VIEWS
+-- =====================================================
+
 --VIEW analitico_estudiantes
 /*La vista analitico_estudiantes centraliza la información académica de las cursadas, 
 integrando datos de estudiantes, materias y profesores, 

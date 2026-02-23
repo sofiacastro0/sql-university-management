@@ -1,3 +1,7 @@
+-- =====================================================
+-- AUDIT TRIGGER
+-- =====================================================
+
 CREATE TRIGGER cursada_audit_condicion_nota 
 AFTER UPDATE OF condicion, nota_final ON cursada
 FOR EACH ROW

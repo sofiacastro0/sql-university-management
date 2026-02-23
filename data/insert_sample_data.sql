@@ -1,5 +1,10 @@
+-- =====================================================
+-- SAMPLE DATA
 -- CARGA REALISTA (UNLa - Lic. en Sistemas plan 2025)
 -- Orden recomendado: borrar datos -> cargar -> cursadas
+-- =====================================================
+
+
 PRAGMA foreign_keys = ON;
 
 BEGIN;
