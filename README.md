@@ -72,7 +72,6 @@ sqlite3 university.db < queries/consultas_control.sql
 sqlite3 university.db < queries/reportes.sql
 ```
 
-> Nota: en `queries/reportes.sql` hay un `;` extra antes de un `ORDER BY` del primer reporte. Si querés ejecutar todo el archivo de una sola vez, conviene corregirlo o ejecutar cada bloque por separado.
 
 ## Reglas de negocio implementadas
 
