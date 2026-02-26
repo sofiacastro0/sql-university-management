@@ -13,6 +13,7 @@ BEGIN;
 DELETE FROM cursada;
 DELETE FROM estudiante;
 DELETE FROM profesor;
+DELETE FROM correlatividad;
 DELETE FROM materia;
 
 ------------------------------------------------------------
@@ -107,6 +108,24 @@ INSERT INTO materia (codigo_materia, nombre, carga_horaria, es_obligatoria, anio
 (671,'Módulo O: Elementos de Matemática (TI671)',4,0,1),
 (672,'Módulo O: Organización de Computadoras (TI672)',4,0,1),
 (673,'Módulo O: Expresión de Problemas y Algoritmos (TI673)',4,0,1);
+
+------------------------------------------------------------
+-- 3.b) CORRELATIVIDADES
+--    Se cargan correlativas para materias de 3ro a 5to año
+------------------------------------------------------------
+INSERT INTO correlatividad (codigo_materia, codigo_materia_correlativa, tipo) VALUES
+(11513,11503,'fuerte'),
+(11515,11508,'de_cursada'),
+(11516,11506,'de_cursada'),
+(11518,11507,'de_cursada'),
+(11519,11511,'fuerte'),
+(11522,11513,'fuerte'),
+(11523,11516,'fuerte'),
+(11524,11518,'fuerte'),
+(11525,11511,'fuerte'),
+(11527,11519,'de_cursada'),
+(11530,11523,'fuerte'),
+(11530,11527,'de_cursada');
 
 ------------------------------------------------------------
 -- 4) CURSADAS COHERENTES

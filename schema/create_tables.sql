@@ -70,3 +70,15 @@ CREATE TABLE cursada_audit (
 
 	FOREIGN KEY (id_cursada) REFERENCES cursada(id_cursada)
 );
+
+CREATE TABLE correlatividad (
+	id_correlativa INTEGER PRIMARY KEY,
+	codigo_materia INTEGER NOT NULL,
+	codigo_correlativa INTEGER NOT NULL,
+	tipo TEXT NOT NULL CHECK(tipo IN ('fuerte', 'de_cursada')),
+
+	FOREIGN KEY (codigo_materia) REFERENCES materia(codigo_materia),
+    FOREIGN KEY (codigo_correlativa) REFERENCES materia(codigo_materia),
+
+    UNIQUE (codigo_materia, codigo_correlativa)
+);

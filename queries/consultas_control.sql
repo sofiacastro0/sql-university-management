@@ -93,3 +93,28 @@ LEFT JOIN cursada c ON c.id_profesor = p.id_profesor
 GROUP BY p.id_profesor, p.apellido, p.nombre, p.estado
 HAVING COUNT(c.id_cursada) = 0
 ORDER BY p.apellido, p.nombre;
+
+
+--Cursadas que incumplen correlatividades
+SELECT
+    c.id_cursada,
+    c.legajo,
+    e.apellido,
+    e.nombre,
+    c.codigo_materia,
+    m.nombre AS materia,
+    co.codigo_materia_correlativa,
+    mc.nombre AS correlativa_faltante
+FROM cursada c
+JOIN estudiante e ON e.legajo = c.legajo
+JOIN materia m ON m.codigo_materia = c.codigo_materia
+JOIN correlatividad co ON co.codigo_materia = c.codigo_materia
+JOIN materia mc ON mc.codigo_materia = co.codigo_materia_correlativa
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM cursada c_prev
+    WHERE c_prev.legajo = c.legajo
+      AND c_prev.codigo_materia = co.codigo_materia_correlativa
+      AND c_prev.condicion = 'aprobado'
+)
+ORDER BY c.legajo, c.codigo_materia, co.codigo_materia_correlativa;

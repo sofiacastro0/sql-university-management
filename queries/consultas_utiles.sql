@@ -33,7 +33,7 @@ ORDER BY c.anio DESC, c.cuatrimestre DESC;
 
 SELECT *
 FROM analitico_estudiantes
-WHERE legajo = 1;
+WHERE apellido_estudiante = 'apellido' AND nombre_estudiante = 'nombre';
 
 -- ============================================
 -- CONSULTA: listar estudiantes activos
@@ -93,3 +93,39 @@ FROM estudiante e
 JOIN cursada c ON c.legajo = e.legajo
 WHERE c.codigo_materia = 11510
 AND c.nota_final IS NULL;
+
+-- ============================================
+-- CONSULTA: correlativas por materia
+-- ============================================
+SELECT
+    m.codigo_materia,
+    m.nombre AS materia,
+    mc.codigo_materia AS codigo_correlativa,
+    mc.nombre AS materia_correlativa,
+    co.tipo
+FROM correlatividad co
+JOIN materia m ON m.codigo_materia = co.codigo_materia
+JOIN materia mc ON mc.codigo_materia = co.codigo_materia_correlativa
+ORDER BY m.codigo_materia, mc.codigo_materia;
+
+-- ============================================
+-- CONSULTA: correlativas pendientes por estudiante y materia
+-- ============================================
+SELECT
+    co.codigo_materia,
+    m.nombre AS materia,
+    co.codigo_materia_correlativa,
+    mc.nombre AS correlativa,
+    CASE
+        WHEN EXISTS (
+            SELECT 1
+            FROM cursada c
+            WHERE c.apellido = 'apellido' AND c.nombre = 'nombre'
+              AND c.codigo_materia = co.codigo_materia_correlativa
+              AND c.condicion = 'aprobado'
+        ) THEN 'cumplida'
+        ELSE 'pendiente'
+    END AS estado_correlativa
+FROM correlatividad co
+JOIN materia m ON m.codigo_materia = co.codigo_materia
+JOIN materia mc ON mc.codigo_materia = co.codigo_materia_cor

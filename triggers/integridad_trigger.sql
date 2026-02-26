@@ -51,3 +51,20 @@ BEGIN
 	WHERE NEW.condicion = 'libre'
 		AND NEW.nota_final IS NOT NULL;
 END;
+
+CREATE TRIGGER validar_aprobacion
+BEFORE UPDATE OF condicion ON cursada
+FOR EACH ROW
+WHEN NEW.condicion = 'aprobado'
+BEGIN
+
+    SELECT RAISE(ABORT, 'No se puede aprobar una materia sin estar regularizada')
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM cursada c
+        WHERE c.legajo = NEW.legajo
+        AND c.codigo_materia = NEW.codigo_materia
+        AND c.condicion = 'regular'
+    );
+
+END;
